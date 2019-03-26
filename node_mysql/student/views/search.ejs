@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=title%></title>
+</head>
+<body>
+	<a href="/">返回主页</a>
+	<h2><%=title%></h2>
+	<h4>学生编号查询</h4>
+	<form action="/user/search" method='post'>
+		<label for="id">编号</label>
+		<input type="text" name="id" id="id">
+		<input type="submit" value="提交">
+	</form>
+
+	<h4>学生姓名查询</h4>
+	<form action="/user/search" method='post'>
+		<label for="name">姓名</label>
+		<input type="text" name="name" id="name">
+		<input type="submit" value="提交">
+	</form>
+	<%if(data.length!=0){%>
+	<table class="std">
+    	<tr>
+    		<th>编号</th>
+    		<th>姓名</th>
+    		<th>语文</th>
+    		<th>英语</th>
+    		<th>数学</th>
+    		<th>操作</th>
+    	</tr>
+    	<% for(var i = 0; i<data.length;i++){ %>
+    		<tr>
+    			<td><%=data[i].id%></td>
+    			<td><%=data[i].name%></td>
+    			<td><%=data[i].chinese%></td>
+    			<td><%=data[i].math%></td>
+    			<td><%=data[i].english%></td>
+    			<td>
+    				<a href="/user/del/<%=data[i].id%>">删除</a>
+    				<a href="/user/toupdate/<%=data[i].id%>">修改</a>
+    			</td>
+    		</tr>
+    	<%}%>
+    </table>
+    <%}%>
+</body>
+</html>
